@@ -66,7 +66,7 @@ export class Post {
         <div class="post-meta">
             Por ${this.#escaparHTML(this.autor)} em ${this.#escaparHTML(this.date)}
         </div>
-            <p>${this.#escaparHTML(this.content)}</p>
+            <p>${this.content}</p>
         </article>
     `;
     }
