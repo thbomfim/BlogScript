@@ -1,6 +1,6 @@
 //importar a const post do arquivo data.js
+import { Post } from './classes/Post.js';
 import { posts } from './data.js';
-
 
 
 //function para renderizar os posts
@@ -9,23 +9,25 @@ function renderizarPosts() {
 
     //limpar o container
     container.innerHTML = '';
+    
+    let acumuladorHtml = '';
 
-    //para cada post vai criar o html e adcionar o post
-    posts.forEach(post => {
-        const postHTML = `
+    let i = 0
+
+    while (i < posts.length) {
+        acumuladorHtml += `
         <article class="post">
-        <a href="post.html?id=${post.id}"><h2>${post.titulo}</h2></a>
+        <a href="post.html?id=${posts[i].id}"><h2>${posts[i].titulo}</h2></a>
         <div class="post-meta">
-        Por ${post.autor} em ${post.data}
+        Por ${posts[i].autor} em ${posts[i].data}
         </div>
         <div class="post-content">
-        <p>${post.conteudo}</p>
+        <p>${posts[i].conteudo.slice(0, 150) + '...'}</p>
         </div>
-        </article>
-        `;
-
-        container.innerHTML += postHTML
-    });
+        </article>`;
+        i++
+    }
+    container.innerHTML = acumuladorHtml;
 }
 
 //chama a funcao quando a pagina carregar
